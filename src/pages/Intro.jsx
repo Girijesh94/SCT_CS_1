@@ -24,7 +24,7 @@ export default function Intro() {
                 <span></span><span></span><span></span><span></span>
               </div>
 
-              <div className="title">WELCOME</div>
+              <div className="title">hehe🫑</div>
 
               <p id="prompt"></p>
 
@@ -60,7 +60,7 @@ export default function Intro() {
                   The Caesar Cipher is one of the simplest and most widely known encryption techniques. It works by shifting the letters of a message by a fixed number of positions in the alphabet. It's an ancient method, yet it's the foundation of modern cryptography!
                 </p>
                 <img
-                  src="/images/lock-icon.webp"
+                  src="/images/lock-icon.png"
                   alt="Lock Icon"
                   className="mx-auto object-contain mt-2"
                   style={{ height: '150px', width: 'auto' }}
