@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion'; // make sure you have this
+import './styles/form.css'; // your custom CSS file
 
 export default function App() {
   const [text, setText] = useState('');
@@ -30,56 +30,55 @@ export default function App() {
   };
 
   return (
-    <motion.div
-      initial={{ y: 50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: 0, opacity: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b] flex items-center justify-center px-4"
-    >
-      <div className="backdrop-blur-xl bg-white/10 p-8 rounded-2xl shadow-2xl w-full max-w-lg border border-white/20 text-white">
-        <h1 className="text-3xl font-extrabold text-center mb-6 drop-shadow-md">🔐 Caesar Cipher Tool</h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <textarea
-            className="w-full bg-white/10 text-white placeholder-white/70 border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-cyan-400 resize-none"
-            rows="3"
-            placeholder="Enter your message..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            required
-          />
-          <input
-            type="number"
-            className="w-full bg-white/10 text-white placeholder-white/70 border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-            placeholder="Shift value"
-            value={shift}
-            onChange={(e) => setShift(e.target.value)}
-            required
-          />
-          <select
-            className="w-full bg-white/10 text-white border border-white/30 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-cyan-400"
-            value={mode}
-            onChange={(e) => setMode(e.target.value)}
-          >
-            <option value="encrypt">🔒 Encrypt</option>
-            <option value="decrypt">🔓 Decrypt</option>
-          </select>
-          <button
-            type="submit"
-            className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-2 rounded-lg transition-all duration-300"
-          >
-            Convert 🔄
-          </button>
-        </form>
-        {result && (
-          <div className="mt-6">
-            <h2 className="font-semibold text-white/90 mb-1">Result:</h2>
-            <div className="bg-white/10 text-white p-3 rounded-lg border border-white/20 break-words">
-              {result}
-            </div>
+    <div className="min-h-screen bg-[#0f172a] flex flex-col items-center justify-center text-white px-4">
+      <div className="form-container">
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="shift">Shift Value</label>
+            <input
+              type="number"
+              id="shift"
+              value={shift}
+              onChange={(e) => setShift(e.target.value)}
+              required
+            />
           </div>
-        )}
+          <div className="form-group">
+            <label htmlFor="textarea">Enter your message</label>
+            <textarea
+              id="textarea"
+              rows="6"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              required
+            ></textarea>
+          </div>
+          <div className="flex items-center justify-between gap-4 mt-2">
+            <button className="form-submit-btn" type="submit">Convert</button>
+
+            <label htmlFor="filter" className="switch" aria-label="Toggle Filter">
+              <input
+                type="checkbox"
+                id="filter"
+                checked={mode === 'decrypt'}
+                onChange={() => setMode(mode === 'encrypt' ? 'decrypt' : 'encrypt')}
+              />
+              <span>Encrypt</span>
+              <span>Decrypt</span>
+            </label>
+          </div>
+        </form>
+
+        {result && (
+  <div className="result-box mt-6">
+    <h2 className="result-heading">Result 🔎</h2>
+    <div className="result-content">
+      {result}
+    </div>
+  </div>
+)}
+
       </div>
-    </motion.div>
+    </div>
   );
 }
