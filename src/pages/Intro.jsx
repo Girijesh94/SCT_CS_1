@@ -24,7 +24,7 @@ export default function Intro() {
                 <span></span><span></span><span></span><span></span>
               </div>
 
-              <div className="title">hehe🫑</div>
+              <div className="title">ha🫑</div>
 
               <p id="prompt"></p>
 
